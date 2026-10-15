@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Log In</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			padding: 24px;
+			background: #f3f4f6;
+			color: #1f2937;
+			font-family: Arial, sans-serif;
+		}
+		.card {
+			width: 100%;
+			max-width: 400px;
+			padding: 32px;
+			background: #fff;
+			border-radius: 12px;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+		}
+		h1 { margin: 0 0 8px; text-align: center; }
+		.intro { margin: 0 0 24px; color: #6b7280; text-align: center; }
+		.message { margin: 0 0 16px; color: #166534; text-align: center; }
+		.error { margin: 0 0 16px; color: #b91c1c; text-align: center; }
+		label { display: block; margin: 16px 0 6px; font-weight: 600; }
+		input {
+			width: 100%;
+			padding: 11px 12px;
+			border: 1px solid #d1d5db;
+			border-radius: 6px;
+			font: inherit;
+		}
+		input:focus { outline: 2px solid #2563eb; border-color: transparent; }
+		button {
+			width: 100%;
+			margin-top: 24px;
+			padding: 12px;
+			border: 0;
+			border-radius: 6px;
+			background: #2563eb;
+			color: #fff;
+			font: inherit;
+			font-weight: 600;
+			cursor: pointer;
+		}
+		button:hover { background: #1d4ed8; }
+		.signup { margin: 20px 0 0; text-align: center; color: #6b7280; }
+		.signup a { color: #2563eb; }
+	</style>
+</head>
+<body>
+	<main class="card">
+		<h1>Welcome back</h1>
+		<p class="intro">Log in to continue.</p>
+		<% if (message) { %>
+			<p class="message" role="status"><%= message %></p>
+		<% } %>
+		<% if (error) { %>
+			<p class="error" role="alert"><%= error %></p>
+		<% } %>
+		<form action="/login" method="POST">
+			<label for="user_id">Username</label>
+			<input id="user_id" name="user_id" type="text" autocomplete="username" value="<%= username %>" required>
+
+			<label for="password">Password</label>
+			<input id="password" name="password" type="password" autocomplete="current-password" required>
+
+			<button type="submit">Log in</button>
+		</form>
+		<p class="signup">New here? <a href="/signup">Create an account</a></p>
+	</main>
+</body>
+</html>
